@@ -1,0 +1,36 @@
+name: Package Release GitHub
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Bump Version
+        default: 1.0.0
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: https://github.com/smilebat96/Releases # location for the settings.xml file      
+    - name: Configure Settings XML
+      uses: whelk-io/maven-settings-xml-action@v20
+      with:
+        output_file: foo/settings.xml
+        repositories: '[{ "id": "github", "url": "https://maven.pkg.github.com/smilebat96/Releases", "snapshots": {"enabled": "true"} }]'
+        servers: '[{ "id": "github", "username": "smilebat96", "password": "${{ secrets.MY_GITHUB_TOKEN }}" }]'
+    - name: Build with Maven
+      run: mvn -B clean install --settings foo/settings.xml --file pom.xml -DskipTests
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn -B --settings foo/settings.xml deploy

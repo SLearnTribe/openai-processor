@@ -1,0 +1,56 @@
+
+server:
+  port: 8089
+spring:
+  application:
+    name: learntribe-inquisitive
+  datasource:
+    url: jdbc:postgresql://${domain}:5432/inquisitve
+    password: password
+    username: keycloak
+  jpa:
+    hibernate:
+      ddl-auto: update
+      generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        search:
+          default:
+            directory_provider: filesystem
+            indexBase: /data/index/default
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${feign.client.url.keycloak}/realms/master
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+  client:
+    serviceUrl:
+      defaultZone: http://${domain}:8761/eureka
+
+feign:
+  client:
+    url:
+      keycloak: http://${domain}:8085/auth
+    config:
+      default:
+        loggerLevel: full
+logging:
+  level:
+    com:
+      smilebat:
+        learntribe:
+          learntribeclients: DEBUG
+
+
+#domain: www.smilebat.xyz
+
+domain: host.docker.internal
+
+
