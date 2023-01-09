@@ -4,26 +4,26 @@
 	<parent>
 		<groupId>com.smilebat.learntribe</groupId>
 		<artifactId>sbcloud-parent-pom</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.smilebat.learntribe</groupId>
-	<artifactId>learntribe-inquisitve</artifactId>
-	<version>1.1.6-SNAPSHOT</version>
+	<artifactId>learntribe-assessment-reactor</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>learntribe-inquisitve</name>
+	<name>learntribe-assessment-reactor</name>
 	<description>Initial</description>
 	<properties>
 		<java.version>11</java.version>
 		<jackson.version>2.5.2</jackson.version>
 		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-		<model.version>1.1.4-SNAPSHOT</model.version>
-		<commons.version>1.1.2-SNAPSHOT</commons.version>
+		<model.version>1.1.5-SNAPSHOT</model.version>
+		<commons.version>1.1.3-SNAPSHOT</commons.version>
 	</properties>
 
 	<scm>
-		<developerConnection>scm:git:https://github.com/SLearnTribe/learntribe-inquisitve.git</developerConnection>
-		<connection>https://github.com/SLearnTribe/learntribe-inquisitve</connection>
+		<developerConnection>scm:git:https://github.com/SLearnTribe/learntribe-assessment-reactor.git</developerConnection>
+		<connection>https://github.com/SLearnTribe/learntribe-assessment-reactor</connection>
 		<tag>HEAD</tag>
 	</scm>
 	<dependencyManagement>
@@ -62,20 +62,10 @@
 			<version>${model.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.7.0</version>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>2.7.9</version>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.7.0</version>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.hibernate</groupId>-->
-<!--			<artifactId>hibernate-search-orm</artifactId>-->
-<!--			<version>5.11.11.Final</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -122,25 +112,14 @@
 			<artifactId>feign-gson</artifactId>
 			<version>10.11</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
@@ -201,7 +180,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<repository>registry.hub.docker.com/smilebat96/learntribe-inquisitve</repository>
+							<repository>registry.hub.docker.com/smilebat96/learntribe-assessment-reactor</repository>
 							<tag>${project.version}</tag>
 							<skipDockerInfo>true</skipDockerInfo>
 							<username>smilebat96</username>

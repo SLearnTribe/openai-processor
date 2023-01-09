@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve.configuration;
+package com.smilebat.learntribe.reactor.configuration;
 
 import com.google.common.collect.ImmutableList;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;

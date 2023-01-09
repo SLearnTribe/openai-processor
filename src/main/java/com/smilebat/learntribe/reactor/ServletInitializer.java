@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve;
+package com.smilebat.learntribe.reactor;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -14,6 +14,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
   @Override
   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-    return application.sources(LearntribeInquisitiveApplication.class);
+    return application.sources(AssessmentReactorApplication.class);
   }
 }

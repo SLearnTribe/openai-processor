@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve.configuration;
+package com.smilebat.learntribe.reactor.configuration;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;

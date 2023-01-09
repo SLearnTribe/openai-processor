@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve.converters;
+package com.smilebat.learntribe.reactor.converters;
 
 import com.smilebat.learntribe.assessment.response.ChallengeResponse;
 import com.smilebat.learntribe.dataaccess.jpa.entity.Challenge;

@@ -1,11 +1,9 @@
-package com.smilebat.learntribe.learntribeinquisitve.controllers;
-
-import static com.smilebat.learntribe.learntribeinquisitve.services.AssessmentService.PageableAssessmentRequest;
+package com.smilebat.learntribe.reactor.controllers;
 
 import com.smilebat.learntribe.assessment.AssessmentRequest;
 import com.smilebat.learntribe.assessment.SubmitAssessmentRequest;
 import com.smilebat.learntribe.assessment.response.AssessmentResponse;
-import com.smilebat.learntribe.learntribeinquisitve.services.AssessmentService;
+import com.smilebat.learntribe.reactor.services.AssessmentService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -92,8 +90,8 @@ public class AssessmentController {
     }
 
     Pageable paging = PageRequest.of(pageNo - 1, pageSize);
-    PageableAssessmentRequest pageRequest =
-        PageableAssessmentRequest.builder()
+    AssessmentService.PageableAssessmentRequest pageRequest =
+        AssessmentService.PageableAssessmentRequest.builder()
             .paging(paging)
             .filters(filters)
             .keyCloakId(keyCloakId)

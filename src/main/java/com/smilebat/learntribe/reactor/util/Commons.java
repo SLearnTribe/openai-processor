@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve.util;
+package com.smilebat.learntribe.reactor.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

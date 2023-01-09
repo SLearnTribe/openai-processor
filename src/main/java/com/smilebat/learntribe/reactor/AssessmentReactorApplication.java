@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve;
+package com.smilebat.learntribe.reactor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,7 +27,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EntityScan("com.smilebat.learntribe.dataaccess.jpa")
 @EnableSwagger2
 @EnableJpaAuditing
-public class LearntribeInquisitiveApplication {
+public class AssessmentReactorApplication {
 
   /**
    * Main method
@@ -35,6 +35,6 @@ public class LearntribeInquisitiveApplication {
    * @param args the args
    */
   public static void main(String[] args) {
-    SpringApplication.run(LearntribeInquisitiveApplication.class, args);
+    SpringApplication.run(AssessmentReactorApplication.class, args);
   }
 }

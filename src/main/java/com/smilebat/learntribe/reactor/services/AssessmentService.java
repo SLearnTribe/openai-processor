@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve.services;
+package com.smilebat.learntribe.reactor.services;
 
 import com.google.common.base.Verify;
 import com.google.common.collect.ImmutableList;
@@ -26,7 +26,7 @@ import com.smilebat.learntribe.enums.UserObReltnType;
 import com.smilebat.learntribe.inquisitve.JobRequest;
 import com.smilebat.learntribe.inquisitve.response.OthersBusinessResponse;
 import com.smilebat.learntribe.learntribeclients.openai.OpenAiService;
-import com.smilebat.learntribe.learntribeinquisitve.converters.AssessmentConverter;
+import com.smilebat.learntribe.reactor.converters.AssessmentConverter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

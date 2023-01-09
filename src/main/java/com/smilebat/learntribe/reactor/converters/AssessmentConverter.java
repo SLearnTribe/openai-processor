@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve.converters;
+package com.smilebat.learntribe.reactor.converters;
 
 import com.smilebat.learntribe.assessment.AssessmentRequest;
 import com.smilebat.learntribe.assessment.response.AssessmentResponse;
