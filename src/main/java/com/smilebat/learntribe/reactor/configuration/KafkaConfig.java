@@ -1,6 +1,5 @@
 package com.smilebat.learntribe.reactor.configuration;
 
-import com.smilebat.learntribe.dataaccess.jpa.entity.UserProfile;
 import com.smilebat.learntribe.reactor.kafka.ApplicationConstant;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,7 +62,7 @@ public class KafkaConfig {
    * @return the {@link ConsumerFactory}
    */
   @Bean
-  public ConsumerFactory<String, UserProfile> consumerFactory() {
+  public ConsumerFactory<String, String> consumerFactory() {
     Map<String, Object> configMap = new HashMap<>();
     configMap.put(
         ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, ApplicationConstant.KAFKA_LOCAL_SERVER_CONFIG);
@@ -80,10 +79,9 @@ public class KafkaConfig {
    * @return the {@link ConcurrentKafkaListenerContainerFactory}.
    */
   @Bean
-  public ConcurrentKafkaListenerContainerFactory<String, UserProfile>
-      kafkaListenerContainerFactory() {
-    ConcurrentKafkaListenerContainerFactory<String, UserProfile> factory =
-        new ConcurrentKafkaListenerContainerFactory<String, UserProfile>();
+  public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
+    ConcurrentKafkaListenerContainerFactory<String, String> factory =
+        new ConcurrentKafkaListenerContainerFactory<String, String>();
     factory.setConsumerFactory(consumerFactory());
     return factory;
   }

@@ -83,7 +83,8 @@ public class AssessmentController {
       @RequestParam(value = "page") int pageNo,
       @RequestParam(value = "limit") int pageSize,
       @RequestParam(value = "filters", required = false) String[] filters,
-      @RequestParam(defaultValue = "", required = false) String keyword) {
+      @RequestParam(defaultValue = "", required = false) String keyword)
+      throws InterruptedException {
 
     if (pageNo <= 0) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Page Number");
