@@ -1,5 +1,6 @@
 package com.smilebat.learntribe.openai.kafka;
 
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
+@ToString
 public class KafkaProducer {
   @Autowired private KafkaTemplate<String, Object> kafkaTemplate;
 

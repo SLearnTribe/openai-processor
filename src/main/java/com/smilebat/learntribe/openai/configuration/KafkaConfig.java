@@ -1,5 +1,6 @@
 package com.smilebat.learntribe.openai.configuration;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -28,6 +29,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
  */
 @Configuration
 @EnableKafka
+@SuppressFBWarnings(justification = "Generated code")
 public class KafkaConfig {
 
   @Value("${kafka.server.url}")
