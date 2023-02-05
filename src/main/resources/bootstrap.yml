@@ -1,6 +1,6 @@
 spring:
   application:
-    name: oaip
+    name: sb-oaip
   cloud:
     consul:
       host: host.docker.internal
