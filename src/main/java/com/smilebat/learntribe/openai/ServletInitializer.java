@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.reactor;
+package com.smilebat.learntribe.openai;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -14,6 +14,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
   @Override
   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-    return application.sources(AssessmentReactorApplication.class);
+    return application.sources(OpenAiProcessorApplication.class);
   }
 }

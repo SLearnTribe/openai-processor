@@ -1,7 +1,6 @@
-package com.smilebat.learntribe.reactor.services.helpers;
+package com.smilebat.learntribe.openai.services.helpers;
 
 import com.smilebat.learntribe.dataaccess.jpa.entity.Challenge;
-import com.smilebat.learntribe.reactor.services.ChallengePattern;
 import lombok.Getter;
 
 /**

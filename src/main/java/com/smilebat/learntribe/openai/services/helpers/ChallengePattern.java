@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.reactor.services;
+package com.smilebat.learntribe.openai.services.helpers;
 
 import java.util.regex.Pattern;
 import lombok.Getter;

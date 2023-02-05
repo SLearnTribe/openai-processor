@@ -1,12 +1,12 @@
-package com.smilebat.learntribe.reactor.configuration;
+package com.smilebat.learntribe.openai.configuration;
 
-import com.smilebat.learntribe.reactor.kafka.ApplicationConstant;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -30,6 +30,12 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 @EnableKafka
 public class KafkaConfig {
 
+  @Value("${kafka.server.url}")
+  private final String kafkaLocalServerConfig = "localhost:29092";
+
+  @Value("${kafka.groupid}")
+  private final String groupIdConfig = "sb-group-1";
+
   /**
    * Bean for producer factory.
    *
@@ -39,7 +45,7 @@ public class KafkaConfig {
   public ProducerFactory<String, Object> producerFactory() {
     Map<String, Object> configMap = new HashMap<>();
     configMap.put(
-        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ApplicationConstant.KAFKA_LOCAL_SERVER_CONFIG);
+        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaLocalServerConfig);
     configMap.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
     configMap.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
     configMap.put(JsonDeserializer.TRUSTED_PACKAGES, "com.smilebat.learntribe");
@@ -65,10 +71,11 @@ public class KafkaConfig {
   public ConsumerFactory<String, String> consumerFactory() {
     Map<String, Object> configMap = new HashMap<>();
     configMap.put(
-        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, ApplicationConstant.KAFKA_LOCAL_SERVER_CONFIG);
+        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaLocalServerConfig);
     configMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     configMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-    configMap.put(ConsumerConfig.GROUP_ID_CONFIG, ApplicationConstant.GROUP_ID_JSON);
+    configMap.put(ConsumerConfig.GROUP_ID_CONFIG, groupIdConfig);
+    configMap.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, 3000000);
     configMap.put(JsonDeserializer.TRUSTED_PACKAGES, "com.smilebat.learntribe");
     return new DefaultKafkaConsumerFactory<>(configMap);
   }

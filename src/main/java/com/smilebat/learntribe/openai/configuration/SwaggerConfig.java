@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.reactor.configuration;
+package com.smilebat.learntribe.openai.configuration;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;

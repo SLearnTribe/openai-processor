@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.reactor.configuration;
+package com.smilebat.learntribe.openai.configuration;
 
 import com.google.common.collect.ImmutableList;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -49,7 +49,8 @@ public class SecurityConfig {
                         "/webjars/**",
                         "/swagger-resources/**",
                         "/configuration/ui",
-                        "/configuration/security")
+                        "/configuration/security",
+                        "/actuator/health")
                     .permitAll()
                     .anyRequest()
                     .authenticated())

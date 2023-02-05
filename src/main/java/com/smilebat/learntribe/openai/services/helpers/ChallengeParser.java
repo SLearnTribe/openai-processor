@@ -1,7 +1,6 @@
-package com.smilebat.learntribe.reactor.services;
+package com.smilebat.learntribe.openai.services.helpers;
 
 import com.smilebat.learntribe.dataaccess.jpa.entity.Challenge;
-import com.smilebat.learntribe.reactor.services.helpers.AbstractChallenge;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
@@ -17,11 +16,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ChallengeParser {
-
-  private String getNextInputText(String input) {
-
-    return input.isBlank() ? getNextInputText(input) : input;
-  }
 
   /**
    * Parses the text obtained from open ai text completion.

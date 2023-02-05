@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.reactor.configuration;
+package com.smilebat.learntribe.openai.configuration;
 
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
