@@ -2,7 +2,6 @@ package com.smilebat.learntribe.openai.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Preconditions;
 import com.google.common.base.Verify;
 import com.smilebat.learntribe.assessment.AssessmentRequest;
 import com.smilebat.learntribe.dataaccess.ChallengeRepository;
@@ -55,7 +54,7 @@ public class ChallengeStore {
   public void createAssessments(KafkaSkillsRequest request) throws JsonProcessingException {
     Set<String> skills = request.getSkills();
     Verify.verifyNotNull(skills, "Skills cannot be null");
-    //Preconditions.checkArgument(skills.size() > 0, "Skills cannot be empty");
+    // Preconditions.checkArgument(skills.size() > 0, "Skills cannot be empty");
 
     if (openAiFeature) {
       skills.forEach(this::createAssessment);

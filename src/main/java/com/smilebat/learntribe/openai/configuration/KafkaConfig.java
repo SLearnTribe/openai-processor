@@ -44,8 +44,7 @@ public class KafkaConfig {
   @Bean
   public ProducerFactory<String, Object> producerFactory() {
     Map<String, Object> configMap = new HashMap<>();
-    configMap.put(
-        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaLocalServerConfig);
+    configMap.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaLocalServerConfig);
     configMap.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
     configMap.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
     configMap.put(JsonDeserializer.TRUSTED_PACKAGES, "com.smilebat.learntribe");
@@ -70,8 +69,7 @@ public class KafkaConfig {
   @Bean
   public ConsumerFactory<String, String> consumerFactory() {
     Map<String, Object> configMap = new HashMap<>();
-    configMap.put(
-        ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaLocalServerConfig);
+    configMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaLocalServerConfig);
     configMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     configMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
     configMap.put(ConsumerConfig.GROUP_ID_CONFIG, groupIdConfig);

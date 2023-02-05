@@ -51,7 +51,7 @@ public class KafkaConsumer {
       challengeStore.createAssessments(request);
     } catch (Exception ex) {
       log.info("Failed processing the Kafka Message for User Assessment");
-      //throw new RuntimeException(ex);
+      // throw new RuntimeException(ex);
     }
   }
 }

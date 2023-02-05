@@ -1,7 +1,6 @@
 package com.smilebat.learntribe.openai.services;
 
 import com.google.common.base.Function;
-import com.google.common.base.Preconditions;
 import com.google.common.base.Verify;
 import com.smilebat.learntribe.dataaccess.jpa.entity.Challenge;
 import com.smilebat.learntribe.learntribeclients.openai.OpenAiService;
@@ -56,7 +55,7 @@ public class ChallengeFactory {
   public Set<Challenge> createChallenges(ChallengeFactoryRequest factoryRequest) {
     Verify.verifyNotNull(factoryRequest, "Factory request cannot be null");
     final int quantity = factoryRequest.getQuantity();
-    //Preconditions.checkArgument(quantity > 0, "Quantity cannot be 0");
+    // Preconditions.checkArgument(quantity > 0, "Quantity cannot be 0");
     Set<Challenge> challenges = new HashSet<>(quantity);
     while (challenges.size() < quantity) {
       challenges.addAll(getOpenAiCompletions(MCQ_PROMPT.apply(factoryRequest)));
@@ -90,8 +89,8 @@ public class ChallengeFactory {
             + "void\nD. native\n\nAnswer: D. native\n\n5. What is the output of the following"
             + "code?\n\npublic class Test {\n   public static void main(String[] args) {\n"
             + "System.out.println(\"Hello, world!\");\n   }\n}\n\nA. Hello, world!\nB. 0\nC. Hello,"
-            + "world\nD. compilation error\n\nAnswer: A. Hello, world!"+
-    "\n\n6. Which of the following is not in Java?\n\nA. let\nB."
+            + "world\nD. compilation error\n\nAnswer: A. Hello, world!"
+            + "\n\n6. Which of the following is not in Java?\n\nA. let\nB."
             + "static\nC."
             + "void\nD. mongo\n\nAnswer: D. mongo\n\n7. What is the output of the following"
             + "code?\n\npublic class Test {\n   public static void main(String[] args) {\n"
