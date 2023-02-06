@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Verify;
 import com.smilebat.learntribe.assessment.AssessmentRequest;
 import com.smilebat.learntribe.dataaccess.ChallengeRepository;
-import com.smilebat.learntribe.dataaccess.jpa.entity.Challenge;
 import com.smilebat.learntribe.enums.AssessmentDifficulty;
 import com.smilebat.learntribe.kafka.KafkaSkillsRequest;
 import com.smilebat.learntribe.openai.kafka.KafkaProducer;
@@ -80,12 +79,13 @@ public class ChallengeStore {
             .skill(skill)
             .quantity(pendingChallenges)
             .build();
-    Set<Challenge> challenges = factory.createChallenges(factoryRequest);
-    for (Challenge challenge : challenges) {
-      challenge.setSkill(skill.trim().toUpperCase());
-      challenge.setDifficulty(AssessmentDifficulty.getFromValue(factoryRequest.getDifficulty()));
-    }
-    challengeRepository.saveAll(challenges);
+    factory.createChallenges(factoryRequest);
+    //    for (Challenge challenge : challenges) {
+    //      challenge.setSkill(skill.trim().toUpperCase());
+    //
+    // challenge.setDifficulty(AssessmentDifficulty.getFromValue(factoryRequest.getDifficulty()));
+    //    }
+    // challengeRepository.saveAll(challenges);
   }
 
   private int getPendingChallengeCount(Integer existingChallenges) {

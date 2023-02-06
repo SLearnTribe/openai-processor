@@ -2,7 +2,9 @@ package com.smilebat.learntribe.openai.services;
 
 import com.google.common.base.Function;
 import com.google.common.base.Verify;
+import com.smilebat.learntribe.dataaccess.ChallengeRepository;
 import com.smilebat.learntribe.dataaccess.jpa.entity.Challenge;
+import com.smilebat.learntribe.enums.AssessmentDifficulty;
 import com.smilebat.learntribe.learntribeclients.openai.OpenAiService;
 import com.smilebat.learntribe.openai.OpenAiRequest;
 import com.smilebat.learntribe.openai.response.Choice;
@@ -31,6 +33,8 @@ public class ChallengeFactory {
 
   private final OpenAiService openAiService;
   private final ChallengeParser challengeParser;
+
+  private final ChallengeRepository challengeRepository;
 
   private static final Function<ChallengeFactoryRequest, String> MCQ_PROMPT =
       (request) ->
@@ -62,7 +66,17 @@ public class ChallengeFactory {
     // Preconditions.checkArgument(quantity > 0, "Quantity cannot be 0");
     Set<Challenge> challenges = new HashSet<>(quantity);
     while (challenges.size() < quantity) {
-      challenges.addAll(getOpenAiCompletions(MCQ_PROMPT.apply(factoryRequest)));
+      Set<Challenge> generatedChallenges = getOpenAiCompletions(MCQ_PROMPT.apply(factoryRequest));
+
+      if (!generatedChallenges.isEmpty()) {
+        for (Challenge challenge : challenges) {
+          challenge.setSkill(factoryRequest.getSkill().trim().toUpperCase());
+          challenge.setDifficulty(
+              AssessmentDifficulty.getFromValue(factoryRequest.getDifficulty()));
+        }
+        challengeRepository.saveAll(generatedChallenges);
+        challenges.addAll(generatedChallenges);
+      }
     }
     return challenges;
   }

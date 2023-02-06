@@ -3,7 +3,7 @@ spring:
     name: sb-oaip
   cloud:
     consul:
-      host: host.docker.internal
+      host: localhost
       port: 8500
       discovery:
         healthCheckPath: /actuator/health

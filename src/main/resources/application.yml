@@ -53,7 +53,7 @@ domain: host.docker.internal
 
 feature:
   openai: true
-  maxquestions: 6
+  maxquestions: 15
 
 kafka:
   server:
