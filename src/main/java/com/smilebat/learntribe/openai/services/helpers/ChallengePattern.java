@@ -42,7 +42,10 @@ public enum ChallengePattern {
     if (answerPattern.matcher(subText).find()) {
       return ChallengePattern.ANSWER;
     }
-    if (subText.startsWith("A.") || subText.startsWith("A)")) {
+    if (subText.startsWith("A.")
+        || subText.startsWith("A)")
+        || subText.startsWith("a.")
+        || subText.startsWith("a)")) {
       return ChallengePattern.OPTIONS;
     }
     return ChallengePattern.TEXT;

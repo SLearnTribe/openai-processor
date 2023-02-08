@@ -1,6 +1,8 @@
 package com.smilebat.learntribe.openai.services.helpers;
 
 import com.smilebat.learntribe.dataaccess.jpa.entity.Challenge;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Getter;
 
 /**
@@ -89,7 +91,14 @@ public class AbstractChallenge {
    */
   public Challenge getChallenge() {
     Challenge challenge = new Challenge();
-    challenge.setOptions(this.getOptions().split("\n"));
+    String[] parsedTextOptions = this.getOptions().split("\n");
+    Set<String> sanitizedOptions = new HashSet<>();
+    for (int i = 0; i < parsedTextOptions.length; i++) {
+      if (!parsedTextOptions[i].isEmpty()) {
+        sanitizedOptions.add(parsedTextOptions[i]);
+      }
+    }
+    challenge.setOptions(sanitizedOptions.stream().toArray(s -> new String[s]));
     challenge.setQuestion(this.getQuestion());
     challenge.setAnswer(this.getAnswer().split("\n")[1]);
     return challenge;
