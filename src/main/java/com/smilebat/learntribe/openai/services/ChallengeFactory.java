@@ -69,7 +69,7 @@ public class ChallengeFactory {
       Set<Challenge> generatedChallenges = getOpenAiCompletions(MCQ_PROMPT.apply(factoryRequest));
 
       if (!generatedChallenges.isEmpty()) {
-        for (Challenge challenge : challenges) {
+        for (Challenge challenge : generatedChallenges) {
           challenge.setSkill(factoryRequest.getSkill().trim().toUpperCase());
           challenge.setDifficulty(
               AssessmentDifficulty.getFromValue(factoryRequest.getDifficulty()));
