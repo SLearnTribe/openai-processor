@@ -6,6 +6,7 @@ import com.smilebat.learntribe.assessment.AssessmentRequest;
 import com.smilebat.learntribe.assessment.response.AssessmentResponse;
 import com.smilebat.learntribe.kafka.KafkaSkillsRequest;
 import com.smilebat.learntribe.openai.kafka.KafkaProducer;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -66,6 +67,14 @@ public class OpenAiController {
         @ApiResponse(code = 404, message = URL_NOT_FOUND),
         @ApiResponse(code = 422, message = INVALID_DATA),
       })
+  @ApiImplicitParam(
+          name = "Authorization",
+          value = "Access Token",
+          required = true,
+          allowEmptyValue = false,
+          paramType = "header",
+          dataTypeClass = String.class,
+          example = "Bearer access_token")
   public ResponseEntity<Boolean> postEvent(
       @AuthenticationPrincipal(expression = SUBJECT) String keyCloakId,
       @RequestBody KafkaSkillsRequest request)

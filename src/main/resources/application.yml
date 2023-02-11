@@ -63,5 +63,6 @@ kafka:
     out: challenge-store-event-2
     in:
       ast: challenge-store-event-1
+      sum: summaries-store-event-1
 
 

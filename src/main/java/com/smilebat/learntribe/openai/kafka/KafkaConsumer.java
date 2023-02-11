@@ -2,8 +2,10 @@ package com.smilebat.learntribe.openai.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smilebat.learntribe.kafka.KafkaProfileRequest;
 import com.smilebat.learntribe.kafka.KafkaSkillsRequest;
 import com.smilebat.learntribe.openai.services.ChallengeStore;
+import com.smilebat.learntribe.openai.services.SummaryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,11 +30,16 @@ public class KafkaConsumer {
 
   private final ChallengeStore challengeStore;
 
+  private final SummaryFactory summaryFactory;
+
   @Value("${kafka.groupid}")
   private final String groupId = "sb-group-1";
 
   @Value("${kafka.topic.in.ast}")
   private final String inTopicAst = "challenge-store-event-1";
+
+  @Value("${kafka.topic.in.sum}")
+  private final String inTopicSum = "summaries-store-event-1";
 
   /**
    * Listener for receiving messages from Kafka Topic
@@ -51,6 +58,22 @@ public class KafkaConsumer {
       challengeStore.createAssessments(request);
     } catch (Exception ex) {
       log.info("Failed processing the Kafka Message for User Assessment:");
+      throw new RuntimeException(ex);
+    }
+  }
+
+  @KafkaListener(
+          groupId = groupId,
+          topics = inTopicSum,
+          containerFactory = KAFKA_LISTENER_CONTAINER_FACTORY
+  )
+  public void getSummaries(String message) throws JsonProcessingException{
+    final KafkaProfileRequest request = mapper.readValue(message, KafkaProfileRequest.class);
+    log.info("Json message received using Kafka listener {}", request.getSkills(), request.getRole());
+    try{
+      summaryFactory.createSummaries(request);
+    } catch (Exception ex){
+      log.info("Failed processing the kafka message for Profile Summaries: ");
       throw new RuntimeException(ex);
     }
   }
