@@ -9,7 +9,7 @@
 
 	<groupId>com.smilebat.learntribe</groupId>
 	<artifactId>openai-processor</artifactId>
-	<version>1.0.7</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>openai-processor</name>
 	<description>Initial</description>
@@ -164,8 +164,4 @@
             </plugin>
         </plugins>
 	</build>
-
-  <scm>
-    <tag>openai-processor-1.0.7</tag>
-  </scm>
 </project>
