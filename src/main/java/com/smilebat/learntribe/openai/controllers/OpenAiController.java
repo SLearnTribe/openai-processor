@@ -68,13 +68,13 @@ public class OpenAiController {
         @ApiResponse(code = 422, message = INVALID_DATA),
       })
   @ApiImplicitParam(
-          name = "Authorization",
-          value = "Access Token",
-          required = true,
-          allowEmptyValue = false,
-          paramType = "header",
-          dataTypeClass = String.class,
-          example = "Bearer access_token")
+      name = "Authorization",
+      value = "Access Token",
+      required = true,
+      allowEmptyValue = false,
+      paramType = "header",
+      dataTypeClass = String.class,
+      example = "Bearer access_token")
   public ResponseEntity<Boolean> postEvent(
       @AuthenticationPrincipal(expression = SUBJECT) String keyCloakId,
       @RequestBody KafkaSkillsRequest request)

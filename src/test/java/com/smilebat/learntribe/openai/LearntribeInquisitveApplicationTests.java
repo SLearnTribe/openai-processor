@@ -1,4 +1,4 @@
-package com.smilebat.learntribe.learntribeinquisitve;
+package com.smilebat.learntribe.openai;
 
 // @SpringBootTest
 class LearntribeInquisitveApplicationTests {
