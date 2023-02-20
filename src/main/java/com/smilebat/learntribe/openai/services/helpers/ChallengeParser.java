@@ -24,11 +24,11 @@ public class ChallengeParser {
    * @return the list of {@link Challenge}.
    */
   public Set<Challenge> parseText(String text) {
+    text = text + "\n*end*";
     String[] arr = text.split("\n");
     ChallengePattern prevType = ChallengePattern.RAW;
     AbstractChallenge absractChallenge = new AbstractChallenge();
-
-    Set<Challenge> challenges = new HashSet<>(15);
+    Set<Challenge> challenges = new HashSet<>(3);
     int index = 0;
     String ostr = null;
 
@@ -36,30 +36,34 @@ public class ChallengeParser {
       while (arr[index].isBlank()) {
         index += 1;
       }
-      String inputText = arr[index];
+
+      String inputText = arr[index].trim();
       ChallengePattern currType = ChallengePattern.evaluate(inputText);
 
       if (prevType != currType && currType != ChallengePattern.TEXT) {
         absractChallenge.selectAbstraction(prevType, ostr);
       }
 
-      if (currType == ChallengePattern.TEXT) {
-        ostr = ostr + "\n" + inputText;
-      } else {
+      if (currType != ChallengePattern.TEXT) {
         prevType = currType;
         ostr = "";
-        ostr = ostr + "\n" + inputText;
       }
+      ostr = ostr + "\n" + inputText;
 
       if (absractChallenge.isChallengeParsed()) {
-        String[] optionsArr = absractChallenge.getOptions().split("\n");
-        if (optionsArr.length > 2) {
-          challenges.add(absractChallenge.getChallenge());
-          absractChallenge = new AbstractChallenge();
-        }
+        // String options = absractChallenge.getOptions();
+        //        String[] optionsArr = options.split("\n");
+        //        if (ChallengePattern.optionsPattern.matcher(options).find()) {
+        //          optionsArr = options.split("[a-eA-E][.)]");
+        ////        }
+        //        if (optionsArr.length > 2) {
+        //          challenges.add(absractChallenge.getChallenge());
+        //          absractChallenge = new AbstractChallenge();
+        //        }
       }
       index++;
     }
+
     return challenges;
   }
 }

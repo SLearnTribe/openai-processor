@@ -80,12 +80,6 @@ public class ChallengeStore {
             .quantity(pendingChallenges)
             .build();
     factory.createChallenges(factoryRequest);
-    //    for (Challenge challenge : challenges) {
-    //      challenge.setSkill(skill.trim().toUpperCase());
-    //
-    // challenge.setDifficulty(AssessmentDifficulty.getFromValue(factoryRequest.getDifficulty()));
-    //    }
-    // challengeRepository.saveAll(challenges);
   }
 
   private int getPendingChallengeCount(Integer existingChallenges) {

@@ -24,10 +24,11 @@ public enum ChallengePattern {
     this.type = type;
   }
 
-  private static final Pattern questionPattern =
-      Pattern.compile("[0-9].*[?]"); // find the questions
-  private static final Pattern answerPattern =
+  public static final Pattern questionPattern = Pattern.compile("[0-9].*[?]"); // find the questions
+  public static final Pattern answerPattern =
       Pattern.compile("[aA][n][s][w][e][r][:] [a-zA-Z]"); // find the answers
+
+  public static final Pattern optionsPattern = Pattern.compile("[a-zA-Z][.)]");
 
   /**
    * Evaluates the {@link ChallengePattern} of input text.
@@ -42,11 +43,11 @@ public enum ChallengePattern {
     if (answerPattern.matcher(subText).find()) {
       return ChallengePattern.ANSWER;
     }
-    if (subText.startsWith("A.")
-        || subText.startsWith("A)")
-        || subText.startsWith("a.")
-        || subText.startsWith("a)")) {
+    if (optionsPattern.matcher(subText).find()) {
       return ChallengePattern.OPTIONS;
+    }
+    if (subText.contains("*end*")) {
+      return ChallengePattern.RAW;
     }
     return ChallengePattern.TEXT;
   }

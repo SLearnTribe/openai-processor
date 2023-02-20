@@ -62,17 +62,22 @@ public class KafkaConsumer {
     }
   }
 
+  /**
+   * Loads request from queue
+   *
+   * @param message the message
+   * @throws JsonProcessingException on procesing failure.
+   */
   @KafkaListener(
-          groupId = groupId,
-          topics = inTopicSum,
-          containerFactory = KAFKA_LISTENER_CONTAINER_FACTORY
-  )
-  public void getSummaries(String message) throws JsonProcessingException{
+      groupId = groupId,
+      topics = inTopicSum,
+      containerFactory = KAFKA_LISTENER_CONTAINER_FACTORY)
+  public void getSummaries(String message) throws JsonProcessingException {
     final KafkaProfileRequest request = mapper.readValue(message, KafkaProfileRequest.class);
-    log.info("Json message received using Kafka listener {}", request.getSkills(), request.getRole());
-    try{
+    log.info("Json message received using Kafka listener: {}", request);
+    try {
       summaryFactory.createSummaries(request);
-    } catch (Exception ex){
+    } catch (Exception ex) {
       log.info("Failed processing the kafka message for Profile Summaries: ");
       throw new RuntimeException(ex);
     }
