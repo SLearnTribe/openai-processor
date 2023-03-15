@@ -1,6 +1,10 @@
 
 server:
   port: 0
+  ssl:
+    key-store-password: changeit
+    key-store: classes/security.p12
+    key-store-type: PKCS12
 spring:
   datasource:
     url: jdbc:postgresql://${domain}:5432/inquisitve
@@ -15,11 +19,15 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         search:
-          default:
-            directory_provider: filesystem
-            indexBase: /data/index/default
+          backend:
+            analysis:
+              configurer: com.smilebat.learntribe.dataaccess.config.CustomLuceneAnalysisConfigurer
+            protocol: http
+            directory:
+              root: /data/index/default
     show-sql: true
   security:
+    require-ssl: true
     oauth2:
       resourceserver:
         jwt:
